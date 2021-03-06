@@ -1,11 +1,31 @@
+
 local Image = require "lib.image"
 
 local Entity = require "gameobjects.entity"
+local Tile = require("gameobjects.tile")
+
+
 
 local Hero = function(game)
+    local breakTiles 
+    breakTiles = function(tx, ty, id)
+        local tile = game.map.get(tx, ty)
+        if tile then
+            if not id then id = tile.id end
+            if id ~= tile.id then return end
+    
+            if tile.flags.breakable then
+                game.map.set(tx, ty, 1)
+            end
+            breakTiles(tx+1, ty,    id)
+            breakTiles(tx-1, ty,    id)
+            breakTiles(tx,   ty+1,  id)
+            breakTiles(tx,   ty-1,  id)
+        end
+    end
 
     local hero = Entity()
-    hero.x = 50
+    hero.x = 20
     hero.y = 50
 
     hero.draw = function(self)
@@ -17,6 +37,8 @@ local Hero = function(game)
         if game.map.isWalkable(tx, ty) then
             hero.x = hero.x + x
             hero.y = hero.y + y
+        else
+            breakTiles(tx, ty)
         end
     end
 

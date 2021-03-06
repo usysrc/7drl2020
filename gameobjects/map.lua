@@ -14,18 +14,18 @@ local Map = function()
     end
 
     for n=1, 1000 do
-        local i = math.random(0, 100)
+        local i = math.random(25, 100)
         local j = math.random(0, 100)
-        local len = math.random(5, 12)
+        local len = math.random(5, 8)
         local oi, oj, di, dj = 0, 0, 0, 0
         if math.random() < 0.5 then
             di = 1
         else
             dj = 1
         end
-        if math.random() < 0.5 then
-            di, dj = -di, -dj
-        end
+        -- if math.random() < 0.5 then
+        --     di, dj = -di, -dj
+        -- end
         local t = math.random(2, 4)
         while len >= 0 do
             len = len - 1
@@ -50,6 +50,15 @@ local Map = function()
             end
         end
     end
+
+    map.get = function(x,y)
+        return data[x..","..y]
+    end
+
+    map.set = function(x,y, id)
+        data[x..","..y] = Tile(id)
+    end
+
     return map
 end
 

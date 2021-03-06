@@ -10,6 +10,8 @@ end
 local tiles = {
     TilePreset(Image.tile, true),
     TilePreset(Image.block, false),
+    TilePreset(Image.bblock, false),
+    TilePreset(Image.gblock, false)    
 }
 
 local Tile = function(id)

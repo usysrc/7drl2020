@@ -9,11 +9,29 @@ local Map = function()
     local map = {}
     for i=1, 100 do
         for j=1, 100 do
-            if math.random() > 0.1 then
                 data[i..","..j] = Tile(1)
-            else
-                data[i..","..j] = Tile(2)
-            end
+        end
+    end
+
+    for n=1, 1000 do
+        local i = math.random(0, 100)
+        local j = math.random(0, 100)
+        local len = math.random(5, 12)
+        local oi, oj, di, dj = 0, 0, 0, 0
+        if math.random() < 0.5 then
+            di = 1
+        else
+            dj = 1
+        end
+        if math.random() < 0.5 then
+            di, dj = -di, -dj
+        end
+        local t = math.random(2, 4)
+        while len >= 0 do
+            len = len - 1
+            oi = oi + di
+            oj = oj + dj
+            data[(i+oi)..","..(j+oj)] = Tile(t)
         end
     end
 

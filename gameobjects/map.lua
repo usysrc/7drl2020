@@ -9,7 +9,11 @@ local Map = function()
     local map = {}
     for i=1, 100 do
         for j=1, 100 do
-            data[i..","..j] = Tile()
+            if math.random() > 0.1 then
+                data[i..","..j] = Tile(1)
+            else
+                data[i..","..j] = Tile(2)
+            end
         end
     end
 

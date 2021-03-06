@@ -25,7 +25,7 @@ local Hero = function(game)
         if key == "left"    then x = -1 end
         if key == "right"   then x = 1  end
         if key == "up"      then y = -1 end
-        if key == "down"    then y = 1 end
+        if key == "down"    then y = 1  end
         hero:move(x,y)
     end
 

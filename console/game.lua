@@ -40,12 +40,7 @@ local console
 
 local game = {}
 
-game.code = [[
-_draw = function()
-    map()
-end
--- here be code:
-]]
+game.code = love.filesystem.read("gamecode.lua")
 
 local down = {}
 

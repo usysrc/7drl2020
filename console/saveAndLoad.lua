@@ -38,7 +38,7 @@ local cartFileName = "game.cart"
 local cartsFolder = "carts/"
 local delim = "=============================================="
 
-local loadPixelEditor = function()
+local load = function()
     if not love.filesystem.getInfo(cartsFolder..cartFileName) then
         return
     end
@@ -57,13 +57,13 @@ local loadPixelEditor = function()
         end
     end
     local data = assert(loadstring(output.data))()
-    sprites.setAllData(data.sprites)
-    map.setAllData(data.map)
-    console.game.code = output.code
-end
-
-love.focus = function()
-    --loadPixelEditor()
+    if data then
+        sprites.setAllData(data.sprites)
+        map.setAllData(data.map)
+    end
+    if output.data then
+        --console.game.code = output.code
+    end
 end
 
 local saveGame = function()
@@ -77,6 +77,14 @@ local saveGame = function()
     love.filesystem.write(cartsFolder..cartFileName, output)
 end
 
+love.focus = function(f)
+    if f then
+        load()
+    else
+        saveGame()
+    end
+end
+
 --[[
     Public
 ]]--
@@ -84,7 +92,7 @@ local saveAndLoad = {}
 
 saveAndLoad.save = saveGame
 
-saveAndLoad.load = loadPixelEditor
+saveAndLoad.load = load
 
 saveAndLoad.init = function(c)
     console = c

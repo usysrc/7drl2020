@@ -34,7 +34,7 @@ local linestart = "> "
 local history = {}
 
 -- generate a savedir and placeholder file
-love.filesystem.setIdentity("console")
+love.filesystem.setIdentity("7drl2021")
 local file = love.filesystem.newFile("carts/readme")
 file:open("w")
 file:write("placeholder")

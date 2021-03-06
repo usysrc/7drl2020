@@ -16,7 +16,7 @@ local Map = function()
     for n=1, 1000 do
         local i = math.random(25, 100)
         local j = math.random(0, 100)
-        local len = math.random(5, 8)
+        local len = math.random(2, 5)
         local oi, oj, di, dj = 0, 0, 0, 0
         if math.random() < 0.5 then
             di = 1
@@ -26,7 +26,7 @@ local Map = function()
         -- if math.random() < 0.5 then
         --     di, dj = -di, -dj
         -- end
-        local t = math.random(2, 4)
+        local t = math.random(2, 5)
         while len >= 0 do
             len = len - 1
             oi = oi + di

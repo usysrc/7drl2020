@@ -21,7 +21,8 @@ local tiles = {
     TilePreset("grass", Image.tile, true),
     TilePreset("oblock", Image.block, false, {"breakable"}),
     TilePreset("bblock", Image.bblock, false, {"breakable"}),
-    TilePreset("gblock", Image.gblock, false, {"breakable"})
+    TilePreset("gblock", Image.gblock, false, {"breakable"}),
+    TilePreset("ablock", Image.ablock, false, {"breakable"})
 }
 
 local Tile = function(id)

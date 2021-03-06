@@ -5,11 +5,11 @@ local Entity = require "gameobjects.entity"
 local Hero = function(game)
 
     local hero = Entity()
-    hero.x = 5
-    hero.y = 5
+    hero.x = 50
+    hero.y = 50
 
     hero.draw = function(self)
-        love.graphics.draw(Image.hero, self.x * self.w, self.y * self.h)
+        love.graphics.draw(Image.hero, self:getX(), self:getY())
     end
 
     hero.move = function(self, x, y)
@@ -28,7 +28,15 @@ local Hero = function(game)
         if key == "down"    then y = 1 end
         hero:move(x,y)
     end
+
+    hero.getX = function(self)
+        return self.x * self.w
+    end
     
+    hero.getY = function(self)
+        return self.y * self.h
+    end
+
     return hero
 end
 

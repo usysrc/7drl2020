@@ -22,8 +22,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 local display = {}
 local scale = 2
 local minScale = 1
-local w = 300
-local h = 250
+local w = 600
+local h = 400
+local settings
 
 success = love.window.updateMode( w * scale, h * scale, settings )
 
@@ -64,6 +65,18 @@ display.mousepressed = function(fn, x, y, btn)
     local x = x / scale
     local y = y / scale
     fn(x,y,btn)
+end
+
+display.getScale = function()
+    return scale
+end
+
+display.getWidth = function()
+    return w
+end
+
+display.getHeight = function()
+    return h
 end
 
 return display

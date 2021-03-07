@@ -1,10 +1,11 @@
 local Camera = require "hump.camera"
 local cameralerp = require "lib.cameralerp"
 
-local Hero = require "gameobjects.hero"
-local Map  = require "gameobjects.map"
+local Hero      = require "gameobjects.hero"
+local Map       = require "gameobjects.map"
+local Castle    = require "gameobjects.castle"
 
-local entities, map, cam, hero
+local entities, map, cam, hero, castle
 
 local game = {}
 
@@ -16,6 +17,8 @@ function game:init()
     entities = {}
     add(entities, hero)
     game.entities = entities
+    
+    castle = Castle(game)
     
     map = Map()
     game.map = map
@@ -33,6 +36,7 @@ function game:draw()
         ent:draw()
     end
     cam:detach()
+    castle:draw()
 end
 
 function game:keypressed(...)

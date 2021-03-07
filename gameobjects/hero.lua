@@ -4,8 +4,6 @@ local Image = require "lib.image"
 local Entity = require "gameobjects.entity"
 local Tile = require("gameobjects.tile")
 
-
-
 local Hero = function(game)
     local breakTiles 
     breakTiles = function(tx, ty, id)

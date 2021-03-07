@@ -14,6 +14,7 @@ local Hero = function(game)
     
             if tile.flags.breakable then
                 game.map.set(tx, ty, 1)
+                game.castle:addProgress(tx, ty, tile, 1)
             end
             breakTiles(tx+1, ty,    id)
             breakTiles(tx-1, ty,    id)

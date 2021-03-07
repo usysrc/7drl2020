@@ -1,16 +1,18 @@
 local Camera = require "hump.camera"
 local cameralerp = require "lib.cameralerp"
+local Timer = (require "hump.timer")
 
 local Hero      = require "gameobjects.hero"
 local Map       = require "gameobjects.map"
 local Castle    = require "gameobjects.castle"
 
-local entities, map, cam, hero, castle
+local entities, map, cam, hero, castle, effects
 
 local game = {}
 
 function game:init()
     cam = Camera()
+    game.cam = cam
 
     hero = Hero(game)
     cameralerp.init(cam, hero)
@@ -19,12 +21,17 @@ function game:init()
     game.entities = entities
     
     castle = Castle(game)
+    game.castle = castle
     
     map = Map()
     game.map = map
+
+    effects = {}
+    game.effects = effects
 end
 
 function game:update(dt)
+    Timer.update(dt)
     cameralerp.update(cam, hero, dt)
 end
 
@@ -37,6 +44,9 @@ function game:draw()
     end
     cam:detach()
     castle:draw()
+    for effect in all(effects) do
+        effect:draw()
+    end
 end
 
 function game:keypressed(...)

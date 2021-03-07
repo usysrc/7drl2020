@@ -26,12 +26,16 @@ local tiles = {
 }
 
 local Tile = function(id)
-    local tile = {}
     local preset = tiles[id]
+
+    local tile = {}
+
+    tile.name = preset.name
     tile.img = preset.img
     tile.walkable = preset.walkable
     tile.flags = preset.flags
     tile.id = id
+    
     return tile
 end
 

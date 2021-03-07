@@ -6,8 +6,8 @@ local tilesize = require "lib.tilesize"
 local addOrbEffect = function(game, tx, ty, mx, my)
     local cx, cy = game.cam:cameraCoords(tx * tilesize, ty * tilesize)
     local obj = {
-        x = cx,
-        y = cy,
+        x = cx + tilesize/2,
+        y = cy + tilesize/2,
         draw = function(self)
             love.graphics.setColor(1,1,1)
             love.graphics.draw(Image.orb, self.x, self.y)

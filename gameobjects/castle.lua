@@ -8,32 +8,36 @@ local Castle = function(game)
         x = 1,
         y = 2,
         progress = 0,
-        maxprogress = 30
+        maxprogress = 30,
+        col = {1,1,1}
     }
     local war = {
         x = 1,
         y = 6,
         progress = 0,
-        maxprogress = 30
+        maxprogress = 30,
+        col = {1,0,0}
     }
     local famine = {
         x = 1,
         y = 10,
         progress = 0,
-        maxprogress = 30
+        maxprogress = 30,
+        col = {0,0.75,0}
     }
     local death = {
         x = 1,
         y = 14,
         progress = 0,
-        maxprogress = 30
+        maxprogress = 30,
+        col = {0.5,0.5,0.5}
     }
 
     local drawProgress = function(rider)
         local spacingy = tilesize
         love.graphics.setColor(0,0,0)
         love.graphics.rectangle("fill", rider.x * tilesize, rider.y*tilesize+spacingy, tilesize, 8)
-        love.graphics.setColor(1,1,0)
+        love.graphics.setColor(rider.col)
         love.graphics.rectangle("fill", rider.x * tilesize, rider.y*tilesize+spacingy, tilesize*math.min(1, rider.progress/rider.maxprogress), 8)
         love.graphics.setColor(1,1,1)
         love.graphics.rectangle("line", rider.x * tilesize, rider.y*tilesize+spacingy, tilesize, 8)
@@ -72,7 +76,7 @@ local Castle = function(game)
    
     castle.addProgress = function(self, tx, ty, tile, x)
 
-        if tile.name == "oblock" then
+        if tile.name == "ablock" then
             conquest.progress = conquest.progress + x
             addOrbEffect(game, tx, ty, conquest.x, conquest.y)
         end
@@ -84,7 +88,7 @@ local Castle = function(game)
             famine.progress = famine.progress + x
             addOrbEffect(game, tx, ty, famine.x, famine.y)
         end
-        if tile.name == "ablock" then
+        if tile.name == "oblock" then
             death.progress = death.progress + x
             addOrbEffect(game, tx, ty, death.x, death.y)
         end

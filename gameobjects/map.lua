@@ -7,15 +7,16 @@ local Map = function()
     local data = {}
 
     local map = {}
-    for i=1, 100 do
-        for j=1, 100 do
+    local mw, mh = 100, 50
+    for i=1, mw do
+        for j=1, mh do
                 data[i..","..j] = Tile(1)
         end
     end
 
     for n=1, 1000 do
-        local i = math.random(25, 100)
-        local j = math.random(0, 100)
+        local i = math.random(25, mw)
+        local j = math.random(0, mh)
         local len = math.random(2, 5)
         local oi, oj, di, dj = 0, 0, 0, 0
         if math.random() < 0.5 then

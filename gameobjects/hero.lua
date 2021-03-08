@@ -24,12 +24,13 @@ local Hero = function(game)
     end
 
     local hero = Entity()
-    hero.x = 20
-    hero.y = 50
+    hero.x = 15
+    hero.y = 25
     hero.color = {1,1,1}
 
     hero.hp = 100
     hero.maxhp = 100
+    hero.attack = 10
 
     hero.draw = function(self)
         love.graphics.setColor(self.color)
@@ -43,7 +44,7 @@ local Hero = function(game)
             if ent ~= game.hero then
                 if ent.x == tx and ent.y == ty then
                     ent:walkon(self)
-                    -- found = true
+                    found = true
                 end
             end
         end
@@ -72,14 +73,6 @@ local Hero = function(game)
         hero:move(x,y)
     end
 
-    hero.getX = function(self)
-        return self.x * self.w
-    end
-    
-    hero.getY = function(self)
-        return self.y * self.h
-    end
-
     hero.drawUI = function(self)
         love.graphics.setColor(1,0,0)
         love.graphics.rectangle("fill", 100, 4, 100 * hero.hp/hero.maxhp, 16)
@@ -87,11 +80,14 @@ local Hero = function(game)
         love.graphics.rectangle("line", 100, 4, 100, 16)
     end
 
-    hero.hit = function(self)
-        self.hp = self.hp - 10
+    hero.walkon = function(self, other)
+        self:hit(other)
+    end
+
+    hero.hit = function(self, other)
+        self.hp = self.hp - other.attack
         self.color = {0,0,0}
         Timer.after(0.5, function() self.color = {1,1,1} end)
-
     end
 
     return hero

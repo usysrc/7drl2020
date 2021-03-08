@@ -7,6 +7,14 @@ local Entity = function()
     e.draw = function() end
     e.update = function() end
     e.keypressed = function() end
+    e.getX = function(self)
+        return self.x * self.w
+    end
+    e.getY = function(self)
+        return self.y * self.h
+    end
+    e.walkon = function() end
+    e.turn = function() end
     return e
 end
 

@@ -3,6 +3,7 @@ local cameralerp = require "lib.cameralerp"
 local Timer = (require "hump.timer")
 
 local Hero      = require "gameobjects.hero"
+local Bandit    = require "gameobjects.bandit"
 local Map       = require "gameobjects.map"
 local Castle    = require "gameobjects.castle"
 
@@ -30,6 +31,10 @@ function game:init()
 
     effects = {}
     game.effects = effects
+
+    for i=1, 10 do
+        add(entities, Bandit(game, i*8, 25))
+    end
 end
 
 function game:update(dt)
@@ -61,6 +66,9 @@ end
 function game:turn()
     cameralerp.turn()
     castle:turn()
+    for ent in all(entities) do
+        ent:turn()
+    end
 end
 
 return game

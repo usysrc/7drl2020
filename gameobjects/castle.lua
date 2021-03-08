@@ -94,7 +94,9 @@ local Castle = function(game)
 
     castle.turn = function(self)
         if conquest.progress >= conquest.maxprogress then
-            Target(game)
+            for i=1, 10 do
+                Target(game, i, 0)
+            end
             conquest.progress = 0
         end
     end

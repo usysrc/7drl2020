@@ -2,6 +2,7 @@ local Image = require "lib.image"
 local tilesize = require "lib.tilesize"
 
 local addOrbEffect = require "gameobjects.effects.orbeffect"
+local Target = require "gameobjects.riderattacks.target"
 
 local Castle = function(game)
     local conquest = {
@@ -51,11 +52,8 @@ local Castle = function(game)
         for i=0, 1 do
             for j=0, 16 do
                 love.graphics.draw(Image.cobble, i * tilesize, j * tilesize)
-                
             end
-            
         end
-
         for j=0,16 do
             local i = 2
             love.graphics.draw(Image.mauer, i * tilesize, j * tilesize)
@@ -91,6 +89,13 @@ local Castle = function(game)
         if tile.name == "oblock" then
             death.progress = death.progress + x
             addOrbEffect(game, tx, ty, death.x, death.y)
+        end
+    end
+
+    castle.turn = function(self)
+        if conquest.progress >= conquest.maxprogress then
+            Target(game)
+            conquest.progress = 0
         end
     end
 

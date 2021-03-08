@@ -15,6 +15,8 @@ function game:init()
     game.cam = cam
 
     hero = Hero(game)
+    game.hero = hero
+    
     cameralerp.init(cam, hero)
     entities = {}
     add(entities, hero)
@@ -47,12 +49,18 @@ function game:draw()
     for effect in all(effects) do
         effect:draw()
     end
+    hero:drawUI()
 end
 
 function game:keypressed(...)
     for ent in all(entities) do
         ent:keypressed(...)
     end
+end
+
+function game:turn()
+    cameralerp.turn()
+    castle:turn()
 end
 
 return game

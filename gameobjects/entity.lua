@@ -6,6 +6,7 @@ local Entity = function()
     e.h = 24
     e.draw = function() end
     e.update = function() end
+    e.keypressed = function() end
     return e
 end
 

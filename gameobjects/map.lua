@@ -14,10 +14,10 @@ local Map = function()
         end
     end
 
-    for n=1, 1000 do
+    for n=1, 500 do
         local i = math.random(25, mw)
         local j = math.random(0, mh)
-        local len = math.random(2, 5)
+        local len = math.random(1, 3)
         local oi, oj, di, dj = 0, 0, 0, 0
         if math.random() < 0.5 then
             di = 1

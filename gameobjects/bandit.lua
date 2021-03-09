@@ -9,13 +9,14 @@ local Bandit = function(game, x,y)
     if tile and not tile.walkable then return end
 
     local bandit = Entity()
+    bandit.type = "bandit"
     bandit.x = x or 40
     bandit.y = y or 25
     bandit.color = {1,1,1}
 
     bandit.maxhp = 30
     bandit.hp = bandit.maxhp
-    bandit.attack = 2
+    bandit.attack = 8
 
     bandit.draw = function(self)
         love.graphics.setColor(self.color)
@@ -27,7 +28,7 @@ local Bandit = function(game, x,y)
         self.hp = self.hp - other.attack
         if self.hp <= 0 then del(game.entities, self) end
         self.color = {0,0,0}
-        Timer.after(0.5, function() self.color = {1,1,1} end)
+        Timer.after(0.25, function() self.color = {1,1,1} end)
     end
 
     bandit.walkon = function(self, other)
@@ -39,7 +40,7 @@ local Bandit = function(game, x,y)
         for ent in all(game.entities) do
             if ent ~= self then
                 if ent.x == tx and ent.y == ty then
-                    ent:walkon(self)
+                    if ent.type ~= self.type then ent:walkon(self) end
                     found = true
                 end
             end
@@ -58,7 +59,7 @@ local Bandit = function(game, x,y)
     end
 
     bandit.turn = function(self)
-        if math.random() < 0.5 then
+        if math.random() < 0.1 then
             self:move(randomselect{{-1,0}, {0, 1}, {0, -1}} )
         else
             local tx, ty = 0, 0

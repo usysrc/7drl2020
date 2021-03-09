@@ -1,5 +1,6 @@
 local Entity = function()
     local e = {}
+    e.type = "entity"
     e.x = 0
     e.y = 0
     e.w = 24

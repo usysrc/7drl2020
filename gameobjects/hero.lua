@@ -1,3 +1,5 @@
+local Gamestate = require "hump.gamestate"
+local diedState = require "gamestates.died"
 local Timer = require "hump.timer"
 local Image = require "lib.image"
 
@@ -83,11 +85,12 @@ local Hero = function(game)
     hero.walkon = function(self, other)
         self:hit(other)
     end
-
+ 
     hero.hit = function(self, other)
         self.hp = self.hp - other.attack
+        if self.hp <= 0 then Gamestate.switch(diedState) end
         self.color = {0,0,0}
-        Timer.after(0.5, function() self.color = {1,1,1} end)
+        Timer.after(0.25, function() self.color = {1,1,1} end)
     end
 
     return hero

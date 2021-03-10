@@ -16,6 +16,7 @@ local Entity = function()
     end
     e.walkon = function() end
     e.turn = function() end
+    e.addItem = function() end
     return e
 end
 

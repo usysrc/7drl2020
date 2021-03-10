@@ -26,6 +26,7 @@ local Hero = function(game)
     end
 
     local hero = Entity()
+    hero.items = {}
     hero.x = 15
     hero.y = 25
     hero.color = {1,1,1}
@@ -72,7 +73,17 @@ local Hero = function(game)
         if key == "right"   then x = 1  end
         if key == "up"      then y = -1 end
         if key == "down"    then y = 1  end
-        hero:move(x,y)
+        if x ~= 0 or y ~= 0 then hero:move(x,y) end
+        if #key == 1 then
+            local k = 0
+            for item in all(self.items) do
+                k = k + 1
+                if k == tonumber(key) then
+                    item:use(self)
+                    del(self.items, item)
+                end
+            end
+        end
     end
 
     hero.drawUI = function(self)
@@ -80,6 +91,12 @@ local Hero = function(game)
         love.graphics.rectangle("fill", 100, 4, 100 * hero.hp/hero.maxhp, 16)
         love.graphics.setColor(1,1,1)
         love.graphics.rectangle("line", 100, 4, 100, 16)
+        love.graphics.setColor(1,1,1)
+        local k = 0
+        for item in all(self.items) do
+            k = k + 1
+            love.graphics.print(k..") "..item.name, 100, 32 + k*16)
+        end
     end
 
     hero.walkon = function(self, other)
@@ -91,6 +108,10 @@ local Hero = function(game)
         if self.hp <= 0 then Gamestate.switch(diedState) end
         self.color = {0,0,0}
         Timer.after(0.25, function() self.color = {1,1,1} end)
+    end
+
+    hero.addItem = function(self, item)
+        add(self.items, item)
     end
 
     return hero

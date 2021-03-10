@@ -4,6 +4,7 @@ local Timer = (require "hump.timer")
 
 local Hero      = require "gameobjects.hero"
 local Bandit    = require "gameobjects.bandit"
+local Potion    = require "gameobjects.potion"
 local Map       = require "gameobjects.map"
 local Castle    = require "gameobjects.castle"
 
@@ -34,6 +35,9 @@ function game:init()
 
     for i=1, 10 do
         add(entities, Bandit(game, i*8, 25))
+    end
+    for i=1, 10 do
+        add(entities, Potion(game, 2+i*8, 25))
     end
 end
 

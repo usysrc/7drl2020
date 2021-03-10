@@ -37,7 +37,9 @@ function game:init()
         add(entities, Bandit(game, i*8, 25))
     end
     for i=1, 10 do
-        add(entities, Potion(game, 2+i*8, 25))
+        for j=1, 10 do
+            add(entities, Potion(game, 2+i*8, 2+j*8))
+        end
     end
 end
 

@@ -92,10 +92,14 @@ local Hero = function(game)
         love.graphics.setColor(1,1,1)
         love.graphics.rectangle("line", 100, 4, 100, 16)
         love.graphics.setColor(1,1,1)
+        local x,y = 460, 32
+        love.graphics.draw(Image.frame, x, y)
         local k = 0
         for item in all(self.items) do
             k = k + 1
-            love.graphics.print(k..") "..item.name, 100, 32 + k*16)
+            local x,y = x+20, y + k*16
+            love.graphics.print(k..")  "..item.name, x,y)
+            love.graphics.draw(item.img, x + 5, y - 4)
         end
     end
 

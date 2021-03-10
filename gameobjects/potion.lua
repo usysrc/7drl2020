@@ -9,6 +9,7 @@ local Potion = function(game, x,y)
     if tile and not tile.walkable then return end
 
     local potion = Entity()
+    potion.img = Image.potion
     potion.name = "potion"
     potion.description = "20 hp"
     potion.use = function(self, entity)
@@ -22,7 +23,7 @@ local Potion = function(game, x,y)
 
     potion.draw = function(self)
         love.graphics.setColor(self.color)
-        love.graphics.draw(Image.potion, self:getX(), self:getY())
+        love.graphics.draw(self.img, self:getX(), self:getY())
         love.graphics.setColor(1,1,1)
     end
 

@@ -3,6 +3,8 @@ State: failure
 Started working on it at: 2021-04-06 09:18 UTC+1
 Finished working on it at: 2021-04-08 ????
 
+![Screenshot](screenshot.png)
+
 # Graphics
 Palette: sweetie-16 by grafxkidi
 
